@@ -14,6 +14,9 @@ import {
   PopperBox,
   Arrow,
   PopperDot,
+  GithubIcon,
+  ShellContainer,
+  ShellCommand,
 } from './styles';
 
 injectGlobal`
@@ -65,7 +68,7 @@ const Demo = enhance(
                   href="https://github.com/FezVrasta/react-popper"
                   target="_blank"
                 >
-                  react-popper
+                  <GithubIcon /> react-popper
                 </a>
               </ReferenceBox>
             )}
@@ -96,6 +99,31 @@ const Demo = enhance(
               </Popper>
             ))}
           </PoppersContainer>
+        </Manager>
+        <Manager>
+          <Reference>
+            {({ ref }) => (
+              <ShellContainer innerRef={ref}>
+                <ShellCommand>
+                  npm install react-popper --save
+                </ShellCommand>
+              </ShellContainer>
+            )}
+          </Reference>
+          <Popper placement="top" modifiers={modifiers}>
+            {({ ref, style, placement, arrowProps }) => (
+              <div ref={ref} style={style} data-placement={placement}>
+                <Arrow
+                  innerRef={arrowProps.ref}
+                  style={arrowProps.style}
+                  data-placement={placement}
+                />
+                <ShellCommand>
+                  yarn add react-popper
+                </ShellCommand>
+              </div>
+            )}
+          </Popper>
         </Manager>
       </Main>
       <Main gradient="orange">
@@ -177,3 +205,4 @@ const Demo = enhance(
 const rootNode = document.querySelector('#root');
 
 rootNode && ReactDOM.render(<Demo />, rootNode);
+
